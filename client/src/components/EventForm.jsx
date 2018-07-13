@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class EventForm extends Component {
   constructor(props) {
@@ -10,11 +11,32 @@ class EventForm extends Component {
     }
 
     this.setEvent = this.setEvent.bind(this);
+    this.addEvent = this.addEvent.bind(this);
   }
 
   setEvent(e) {
     this.setState({
       [e.target.name]: e.target.value
+    })
+  }
+
+  addEvent(e) {
+    e.preventDefault();
+    console.log('clicked')
+    axios.post('/events', {
+      event: {
+        title: this.state.title,
+        date: this.props.date,
+        start: this.state.start,
+        end: this.state.end
+      }
+    })
+    .then(() => {
+      //fetch events
+      console.log('saved!')
+    })
+    .catch((err) => {
+      console.log(err);
     })
   }
 
@@ -33,6 +55,7 @@ class EventForm extends Component {
         <label> End Time:
           <input name="end" value={this.state.end} onChange={(e) => {this.setEvent(e)}} />
         </label>
+        <button onClick={(e) => {this.addEvent(e)}}>Add Event</button>
       </form>
     )
   }

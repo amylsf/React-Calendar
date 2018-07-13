@@ -28,7 +28,7 @@ app.post('/events', (req, res) => {
     res.status(201).end();
   })
   .catch((err) => {
-    res.status(500).end('could not post', err);
+    res.status(500).end('could not save event', err);
   })
 })
 
@@ -38,6 +38,6 @@ app.delete('/events', (req, res) => {
     res.status(200).end();
   })
   .catch((err) => {
-    res.status(500).end('could not post', err);
+    res.status(500).end('could not delete event', err);
   })
 })
