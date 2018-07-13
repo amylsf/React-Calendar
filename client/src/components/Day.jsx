@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventForm from './EventForm.jsx';
+import Event from './Event.jsx';
 import axios from 'axios';
 import Modal from 'react-modal';
 
@@ -9,13 +10,15 @@ class Day extends Component {
     this.state = {
       modalIsOpen: false,
       events: [],
-      clickCount: 0
+      clickCount: 0,
+      selectedEvent: ''
     }
 
     this.fetchEvents = this.fetchEvents.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
+    this.showEvent = this.showEvent.bind(this);
   }
 
   componentDidMount() {
@@ -41,13 +44,15 @@ class Day extends Component {
 
   openModal() {
     this.setState({
-      modalIsOpen: true
+      modalIsOpen: true,
+      clickCount: 0
     })
   }
 
   closeModal() {
     this.setState({
-      modalIsOpen: false
+      modalIsOpen: false,
+      selectedEvent: ''
     })
   }
 
@@ -61,19 +66,36 @@ class Day extends Component {
     })
   }
 
+  showEvent(event) {
+    this.setState({
+      selectedEvent: event
+    }, () => {
+      this.openModal();
+    })
+  }
+
   render() {
+    const modalStyles = {
+      content: {
+        width: '30%',
+        height: '30%',
+        margin: 'auto'
+      }
+    }
+
     return (
       <div className="day" onClick={this.handleDoubleClick}>
         <span className="day-number">{this.props.currentDay}</span>
         {this.state.events.length ? this.state.events.map((event) => {
           return (
-            <div key={event._id} className="event-list">{event.title}</div>
+            <div key={event._id} className="event-list" onClick={() => {this.showEvent(event)}}>{event.title}</div>
           )
         })
         : null}
         <br/>
-        <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} >
-          <EventForm fetchEvents={this.fetchEvents} date={this.props.date} closeModal={this.closeModal} />
+        <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} style={modalStyles} >
+          {this.state.selectedEvent !== '' ? <Event event={this.state.selectedEvent} closeModal={this.closeModal}/> :
+          <EventForm fetchEvents={this.fetchEvents} date={this.props.date} closeModal={this.closeModal} />}
         </Modal>
       </div>
     )
