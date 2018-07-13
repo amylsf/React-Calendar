@@ -13,7 +13,7 @@ app.listen(port, function() {
 });
 
 app.get('/events', (req, res) => {
-  fetchEvents()
+  fetchEvents(req.query.date)
   .then((data) => {
     res.status(200).send(data);
   })

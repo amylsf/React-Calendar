@@ -17,6 +17,7 @@ class Week extends Component {
         <Day
           key={currentDay.date()}
           currentDay={currentDay.date()}
+          date={currentDay.format('MM-DD-YYYY')}
         />
       );
       currentDay.add(1, 'day');

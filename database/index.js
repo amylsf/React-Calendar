@@ -12,6 +12,7 @@ const eventSchema = new mongoose.Schema({
 const Event = mongoose.model('Event', eventSchema);
 
 module.exports.saveEvent = (event) => {
+  console.log(event)
   return Event.create({
     title: event.title,
     date: event.date,
@@ -30,8 +31,13 @@ module.exports.removeEvent = () => {
   })
 }
 
-module.exports.fetchEvents = () => {
-  return Event.find({})
+module.exports.fetchEvents = (date) => {
+  return Event.find({
+    date: date
+  })
+  .then((data) => {
+    return data;
+  })
   .catch((err) => {
     console.log('Unable to fetch events from db', err);
   })
