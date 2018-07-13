@@ -8,6 +8,14 @@ class EventForm extends Component {
       start: '',
       end: ''
     }
+
+    this.setEvent = this.setEvent.bind(this);
+  }
+
+  setEvent(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
 
@@ -15,15 +23,15 @@ class EventForm extends Component {
     return (
       <form>
         <label> Event Name:
-          <input name="title" />
+          <input name="title" value={this.state.title} onChange={(e) => {this.setEvent(e)}} />
         </label>
         <br/>
         <label> Start Time:
-          <input/>
+          <input name="start" value={this.state.start} onChange={(e) => {this.setEvent(e)}} />
         </label>
         <br/>
         <label> End Time:
-          <input/>
+          <input name="end" value={this.state.end} onChange={(e) => {this.setEvent(e)}} />
         </label>
       </form>
     )
