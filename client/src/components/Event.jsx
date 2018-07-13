@@ -27,8 +27,8 @@ class Event extends Component {
 
   render() {
     return (
-      <div>
-        <div>{this.props.event.title}</div>
+      <div className="event-details">
+        <div className="title">{this.props.event.title}</div>
         <div>{this.props.event.date}</div>
         <div>{this.props.event.start} {this.props.event.startTime} to {this.props.event.end} {this.props.event.endTime}</div>
         {this.props.isDefaultEvent ? null : <button className="form-button" onClick={(e) => {this.removeEvent(e)}}>Delete Event</button>}
