@@ -24,8 +24,8 @@ module.exports.saveEvent = (event) => {
   })
 }
 
-module.exports.removeEvent = () => {
-  return Event.remove()
+module.exports.removeEvent = (eventId) => {
+  return Event.remove({_id: eventId})
   .catch((err) => {
     console.log('Unable to remove event from db', err);
   })

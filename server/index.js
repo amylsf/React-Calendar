@@ -33,7 +33,7 @@ app.post('/events', (req, res) => {
 })
 
 app.delete('/events', (req, res) => {
-  removeEvent(req.query.event)
+  removeEvent(req.query.eventId)
   .then(() => {
     res.status(200).end();
   })

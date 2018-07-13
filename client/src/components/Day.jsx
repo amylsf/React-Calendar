@@ -95,7 +95,7 @@ class Day extends Component {
     }
 
     return (
-      <div className="day" onClick={this.handleDoubleClick}>
+      <div className={this.props.dayNumber === 0 || this.props.dayNumber === 6 ? "day weekend" : "day"} onClick={this.handleDoubleClick}>
         <span className="day-number">{this.props.currentDay}</span>
         {this.state.events.length ? this.state.events.map((event) => {
           return (
@@ -105,7 +105,7 @@ class Day extends Component {
         : null}
         <br/>
         <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} style={modalStyles} >
-          {this.state.selectedEvent !== '' ? <Event event={this.state.selectedEvent} closeModal={this.closeModal}/> :
+          {this.state.selectedEvent !== '' ? <Event event={this.state.selectedEvent} closeModal={this.closeModal} fetchEvents={this.fetchEvents} /> :
           <EventForm fetchEvents={this.fetchEvents} date={this.props.date} closeModal={this.closeModal} />}
         </Modal>
       </div>

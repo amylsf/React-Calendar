@@ -61,3 +61,7 @@
 button:hover {
   cursor: pointer;
 }
+
+.weekend {
+  background-color: #F8F8F8;
+}
