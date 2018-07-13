@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import EventForm from './EventForm.jsx';
 import axios from 'axios';
+import Modal from 'react-modal';
 
 class Day extends Component {
   constructor() {
     super()
     this.state = {
-      showForm: false,
+      modalIsOpen: false,
       events: []
     }
 
-    this.showEventForm = this.showEventForm.bind(this);
     this.fetchEvents = this.fetchEvents.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
     this.fetchEvents();
+    Modal.setAppElement('body');
   }
 
   fetchEvents() {
@@ -34,9 +37,15 @@ class Day extends Component {
     })
   }
 
-  showEventForm() {
+  openModal() {
     this.setState({
-      showForm: !this.state.showForm
+      modalIsOpen: true
+    })
+  }
+
+  closeModal() {
+    this.setState({
+      modalIsOpen: false
     })
   }
 
@@ -51,8 +60,10 @@ class Day extends Component {
         })
         : null}
         <br/>
-        <button onClick={this.showEventForm}>Add Event</button>
-        {this.state.showForm ? <EventForm fetchEvents={this.fetchEvents} date={this.props.date} /> : null}
+        <button onClick={this.openModal}>open Modal</button>
+        <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} >
+          <EventForm fetchEvents={this.fetchEvents} date={this.props.date} closeModal={this.closeModal} />
+        </Modal>
       </div>
     )
   }

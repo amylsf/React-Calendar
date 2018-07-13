@@ -22,7 +22,6 @@ class EventForm extends Component {
 
   addEvent(e) {
     e.preventDefault();
-    console.log(this.props.date)
     axios.post('/events', {
       event: {
         title: this.state.title,
@@ -32,13 +31,13 @@ class EventForm extends Component {
       }
     })
     .then(() => {
+      this.props.closeModal();
       this.props.fetchEvents();
     })
     .catch((err) => {
       console.log(err);
     })
   }
-
 
   render() {
     return (
