@@ -50,6 +50,7 @@ class Calendar extends Component {
       date.add(1, 'week'); //gets each sunday of the month
       weekCount++;
       generatedWeeks = weekCount > 1 && currentMonth !== date.month(); //stops generating new weeks when sunday falls in new month
+      currentMonth = date.month();
     }
     return weeks;
   }
