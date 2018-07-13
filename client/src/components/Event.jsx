@@ -9,7 +9,8 @@ class Event extends Component {
     this.removeEvent = this.removeEvent.bind(this);
   }
 
-  removeEvent() {
+  removeEvent(e) {
+    e.preventDefault();
     axios.delete('/events', {
       params: {
         eventId: this.props.event._id
@@ -29,8 +30,8 @@ class Event extends Component {
       <div>
         <div>{this.props.event.title}</div>
         <div>{this.props.event.date}</div>
-        <div>{this.props.event.start} to {this.props.event.end}</div>
-        <button onClick={this.removeEvent}>Delete Event</button>
+        <div>{this.props.event.start} {this.props.event.startTime} to {this.props.event.end} {this.props.event.endTime}</div>
+        {this.props.isDefaultEvent ? null : <button className="form-button" onClick={(e) => {this.removeEvent(e)}}>Delete Event</button>}
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Day from './Day.jsx';
+import { events } from '../data/eventData.js';
 
 class Week extends Component {
   constructor() {
@@ -13,12 +14,17 @@ class Week extends Component {
     let currentDay = this.props.date;
 
     for (let i = 0; i < 7; i++) {
+      let date = currentDay.format('MM-DD-YYYY');
+      let todaysEvents = events.filter((event) => {
+        return event.date === date;
+      })
       days.push(
         <Day
           key={currentDay.date()}
           currentDay={currentDay.date()}
-          date={currentDay.format('MM-DD-YYYY')}
+          date={date}
           dayNumber={currentDay.day()}
+          todaysEvents={todaysEvents}
         />
       );
       currentDay.add(1, 'day');

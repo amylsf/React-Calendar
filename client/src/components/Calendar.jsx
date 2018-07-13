@@ -59,11 +59,11 @@ class Calendar extends Component {
     return (
       <div className="app-container">
         <div className="header">
-          <div className="month">{this.state.month.format('MMMM YYYY')}</div>
+          <div className="month"><strong>{this.state.month.format('MMMM')}</strong> {this.state.month.format('YYYY')}</div>
           <div className="navigation">
-            <button onClick={this.getPreviousMonth}>Previous</button>
-            <button onClick={this.getCurrentMonth}>Today</button>
-            <button onClick={this.getNextMonth}>Next</button>
+            <button className="nav-button" onClick={this.getPreviousMonth}>Previous</button>
+            <button className="nav-button" onClick={this.getCurrentMonth}>Today</button>
+            <button className="nav-button" onClick={this.getNextMonth}>Next</button>
           </div>
         </div>
         <div className="calendar-container">

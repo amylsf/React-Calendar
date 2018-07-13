@@ -1,6 +1,9 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
 .app-container {
   width: 100%;
-  font-family: 'Raleway', sans-serif;
 }
 
 .calendar-container {
@@ -10,6 +13,12 @@
 
 .header {
   width: 100%;
+}
+
+.month {
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 30px;
 }
 
 .navigation {
@@ -46,12 +55,18 @@
 .day-name {
   width: 14.13%;
   padding-right: 5px;
+  padding-top: 20px;
+  font-weight: 500; 
 }
 
 .event-list {
   margin: 5px 2px 0px 2px;
-  background-color: pink;
+  background-color: turquoise;
   text-align: center;
+}
+
+.default {
+  background-color: pink;
 }
 
 .event-list:hover {
@@ -62,6 +77,24 @@ button:hover {
   cursor: pointer;
 }
 
+button {
+  font-family: 'Raleway', sans-serif;
+}
+
+.form-button {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.nav-button {
+  font-weight: 600;
+  font-size: 12px;
+}
+
 .weekend {
   background-color: #F8F8F8;
+}
+
+.input {
+  margin-bottom: 8px;
 }

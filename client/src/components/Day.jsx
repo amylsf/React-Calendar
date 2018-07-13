@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import EventForm from './EventForm.jsx';
-import Event from './Event.jsx';
 import axios from 'axios';
 import Modal from 'react-modal';
+import EventForm from './EventForm.jsx';
+import Event from './Event.jsx';
 
 class Day extends Component {
   constructor() {
@@ -11,7 +11,8 @@ class Day extends Component {
       modalIsOpen: false,
       events: [],
       clickCount: 0,
-      selectedEvent: ''
+      selectedEvent: '',
+      isDefaultEvent: false
     }
 
     this.fetchEvents = this.fetchEvents.bind(this);
@@ -77,9 +78,10 @@ class Day extends Component {
     })
   }
 
-  showEvent(event) {
+  showEvent(event, isDefaultEvent) {
     this.setState({
-      selectedEvent: event
+      selectedEvent: event,
+      isDefaultEvent: isDefaultEvent
     }, () => {
       this.openModal();
     })
@@ -89,7 +91,7 @@ class Day extends Component {
     const modalStyles = {
       content: {
         width: '30%',
-        height: '30%',
+        height: '20%',
         margin: 'auto'
       }
     }
@@ -97,15 +99,20 @@ class Day extends Component {
     return (
       <div className={this.props.dayNumber === 0 || this.props.dayNumber === 6 ? "day weekend" : "day"} onClick={this.handleDoubleClick}>
         <span className="day-number">{this.props.currentDay}</span>
+        {this.props.todaysEvents.length ? this.props.todaysEvents.map((event, i) => {
+          return (
+            <div key={i} className="event-list default" onClick={() => {this.showEvent(event, true)}}>{event.title}</div>
+          )
+        }) : null}
         {this.state.events.length ? this.state.events.map((event) => {
           return (
-            <div key={event._id} className="event-list" onClick={() => {this.showEvent(event)}}>{event.title}</div>
+            <div key={event._id} className="event-list" onClick={() => {this.showEvent(event, false)}}>{event.title}</div>
           )
         })
         : null}
         <br/>
         <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} style={modalStyles} >
-          {this.state.selectedEvent !== '' ? <Event event={this.state.selectedEvent} closeModal={this.closeModal} fetchEvents={this.fetchEvents} /> :
+          {this.state.selectedEvent !== '' ? <Event event={this.state.selectedEvent} closeModal={this.closeModal} fetchEvents={this.fetchEvents} isDefaultEvent={this.state.isDefaultEvent}/> :
           <EventForm fetchEvents={this.fetchEvents} date={this.props.date} closeModal={this.closeModal} />}
         </Modal>
       </div>
