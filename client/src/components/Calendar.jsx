@@ -39,9 +39,14 @@ class Calendar extends Component {
     let generatedWeeks = false;
     let weekCount = 0;
     let currentMonth = date.month();
-    
+
     while (!generatedWeeks) {
-      weeks.push(date.clone().format('dd')); //[TO DO] add week component in place of this!!
+      weeks.push(
+        <Week
+          key={date.clone()}
+          date={date.clone()}
+        />
+      ); //[TO DO] add week component in place of this!!
       date.add(1, 'week'); //gets each sunday of the month
       weekCount++;
       generatedWeeks = weekCount > 1 && currentMonth !== date.month(); //stops generating new weeks when sunday falls in new month
