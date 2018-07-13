@@ -44,6 +44,7 @@ class EventForm extends Component {
     })
   }
 
+  //generate time options for dropdown form
   generateTimes() {
     let times = ['12:00', '12:30'];
     for (let i = 1; i <= 11; i++) {

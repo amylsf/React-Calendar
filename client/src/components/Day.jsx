@@ -44,6 +44,7 @@ class Day extends Component {
     })
   }
 
+  //opens the popup modal that holds the event info 
   openModal() {
     this.setState({
       modalIsOpen: true,
@@ -51,6 +52,7 @@ class Day extends Component {
     })
   }
 
+  //closes the popup modal that holds the event info 
   closeModal() {
     this.setState({
       modalIsOpen: false,
@@ -64,6 +66,7 @@ class Day extends Component {
     })
   }
 
+  //opens an event form when you double click on a day
   handleDoubleClick() {
     this.setState({
       clickCount: this.state.clickCount += 1
@@ -71,13 +74,14 @@ class Day extends Component {
       if (this.state.clickCount === 2) {
         this.openModal();
       } else {
-        setTimeout(() => {
+        setTimeout(() => { //resets the click count if you wait too long between clicks
           this.clearClickCount();
         }, 500)
       }
     })
   }
 
+  //shows event details for an event upon click
   showEvent(event, isDefaultEvent) {
     this.setState({
       selectedEvent: event,
@@ -92,7 +96,8 @@ class Day extends Component {
       content: {
         width: '30%',
         height: '20%',
-        margin: 'auto'
+        margin: 'auto',
+        backgroundColor: '#F8F8F8'
       }
     }
 
