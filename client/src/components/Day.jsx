@@ -101,6 +101,7 @@ class Day extends Component {
       }
     }
 
+    //NOTE: if i had additional time, i would put the below events together in one array and sort them in time order
     return (
       <div className={this.props.dayNumber === 0 || this.props.dayNumber === 6 ? "day weekend" : "day"} onClick={this.handleDoubleClick}>
         <span className="day-number">{this.props.currentDay}</span>
