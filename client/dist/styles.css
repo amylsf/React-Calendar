@@ -53,3 +53,11 @@
   background-color: pink;
   text-align: center;
 }
+
+.event-list:hover {
+  cursor: pointer;
+}
+
+button:hover {
+  cursor: pointer;
+}

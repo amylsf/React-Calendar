@@ -19,6 +19,7 @@ class Day extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
     this.showEvent = this.showEvent.bind(this);
+    this.clearClickCount = this.clearClickCount.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +56,12 @@ class Day extends Component {
       selectedEvent: ''
     })
   }
+  
+  clearClickCount() {
+    this.setState({
+      clickCount: 0
+    })
+  }
 
   handleDoubleClick() {
     this.setState({
@@ -62,6 +69,10 @@ class Day extends Component {
     }, () => {
       if (this.state.clickCount === 2) {
         this.openModal();
+      } else {
+        setTimeout(() => {
+          this.clearClickCount();
+        }, 500)
       }
     })
   }
