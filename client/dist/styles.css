@@ -29,6 +29,9 @@
 .day {
   width: 14.13%;
   border: 1px solid #d1d1d1;
+}
+
+.day-number {
   padding-right: 5px;
 }
 
@@ -36,11 +39,17 @@
   width: 100%;
   display: flex;
   padding-top: 20px;
-  padding-right: 5px;
   text-align: right;
   margin-bottom: 10px;
 }
 
 .day-name {
   width: 14.13%;
+  padding-right: 5px;
+}
+
+.event-list {
+  margin: 5px 2px 0px 2px;
+  background-color: pink;
+  text-align: center;
 }

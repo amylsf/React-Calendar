@@ -8,12 +8,14 @@ class Day extends Component {
     super()
     this.state = {
       modalIsOpen: false,
-      events: []
+      events: [],
+      clickCount: 0
     }
 
     this.fetchEvents = this.fetchEvents.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleDoubleClick = this.handleDoubleClick.bind(this);
   }
 
   componentDidMount() {
@@ -49,9 +51,19 @@ class Day extends Component {
     })
   }
 
+  handleDoubleClick() {
+    this.setState({
+      clickCount: this.state.clickCount += 1
+    }, () => {
+      if (this.state.clickCount === 2) {
+        this.openModal();
+      }
+    })
+  }
+
   render() {
     return (
-      <div className="day">
+      <div className="day" onClick={this.handleDoubleClick}>
         <span className="day-number">{this.props.currentDay}</span>
         {this.state.events.length ? this.state.events.map((event) => {
           return (
@@ -60,7 +72,6 @@ class Day extends Component {
         })
         : null}
         <br/>
-        <button onClick={this.openModal}>open Modal</button>
         <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} >
           <EventForm fetchEvents={this.fetchEvents} date={this.props.date} closeModal={this.closeModal} />
         </Modal>
