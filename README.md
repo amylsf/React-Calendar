@@ -2,14 +2,30 @@
 
 > Simple calendar app built with React that allows you to switch between months as well as add and remove events. To add an event, double click on the corresponding day. Click on an event to view additional details.
 
-## Usage
+## Installing Dependencies
 
-> Install node by running "brew install node" in your terminal
-> Install mongo by running "brew install mongo"
-> Run "npm install"
-> In a new terminal window, start mongo with "mongod —dbpath db"
-> Start server with "npm run start"
-> Load page on localhost:3000
+1. Clone this repo down to your local machine
+2. From within your terminal, install node:
+```sh
+brew install node
+```
+3. Install mongo:
+```sh
+brew install mongo
+```
+4. 
+```sh
+npm install
+```
+5. In a new terminal window, start mongo:
+```sh
+mongod —dbpath db
+```
+6. Start server:
+```sh
+npm run start
+```
+7. Load page on localhost:3000
 
 ## Tech
 
