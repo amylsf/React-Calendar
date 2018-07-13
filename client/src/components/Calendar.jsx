@@ -46,7 +46,7 @@ class Calendar extends Component {
           key={date.clone()}
           date={date.clone()}
         />
-      ); //[TO DO] add week component in place of this!!
+      );
       date.add(1, 'week'); //gets each sunday of the month
       weekCount++;
       generatedWeeks = weekCount > 1 && currentMonth !== date.month(); //stops generating new weeks when sunday falls in new month
@@ -56,23 +56,27 @@ class Calendar extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className="app-container">
+        <div className="header">
           <div className="month">{this.state.month.format('MMMM YYYY')}</div>
-          <button onClick={this.getPreviousMonth}>Previous</button>
-          <button onClick={this.getCurrentMonth}>Today</button>
-          <button onClick={this.getNextMonth}>Next</button>
+          <div className="navigation">
+            <button onClick={this.getPreviousMonth}>Previous</button>
+            <button onClick={this.getCurrentMonth}>Today</button>
+            <button onClick={this.getNextMonth}>Next</button>
+          </div>
         </div>
-        <div className="day-names">
-          <span className="day-name">Sun</span>
-          <span className="day-name">Mon</span>
-          <span className="day-name">Tue</span>
-          <span className="day-name">Wed</span>
-          <span className="day-name">Thu</span>
-          <span className="day-name">Fri</span>
-          <span className="day-name">Sat</span>
+        <div className="calendar-container">
+          <div className="day-names">
+            <span className="day-name">Sun</span>
+            <span className="day-name">Mon</span>
+            <span className="day-name">Tue</span>
+            <span className="day-name">Wed</span>
+            <span className="day-name">Thu</span>
+            <span className="day-name">Fri</span>
+            <span className="day-name">Sat</span>
+          </div>
+          {this.displayWeeks()}
         </div>
-        {this.displayWeeks()}
       </div>
     )
   }

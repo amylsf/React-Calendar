@@ -10,7 +10,7 @@ class Day extends Component {
 
   render() {
     return (
-      <div></div>
+      <div className="day">{this.props.currentDay}</div>
     )
   }
 }

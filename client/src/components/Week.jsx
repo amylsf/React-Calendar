@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Day from './Day.jsx';
 
 class Week extends Component {
   constructor() {
@@ -12,7 +13,12 @@ class Week extends Component {
     let currentDay = this.props.date;
 
     for (let i = 0; i < 7; i++) {
-      days.push(currentDay.clone().date());
+      days.push(
+        <Day
+          key={currentDay.date()}
+          currentDay={currentDay.date()}
+        />
+      );
       currentDay.add(1, 'day');
     }
     return days;
@@ -20,7 +26,7 @@ class Week extends Component {
 
   render() {
     return (
-      <div>{this.displayDays()}</div>
+      <div className="week">{this.displayDays()}</div>
     )
   }
 }
